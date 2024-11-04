@@ -1,0 +1,86 @@
+### README: Running the MapReduce Codes
+
+This README explains how to set up and execute the provided MapReduce jobs using MRJob with Hadoop, as well as how to run the unit tests to validate the implementation.
+
+---
+
+#### **Prerequisites**
+1. Python 3.x installed on your machine.
+2. Hadoop and HDFS are properly configured.
+3. Required Python libraries installed:
+   ```bash
+   pip install mrjob
+   ```
+
+4. Input files (`movie_new.csv`, `rating_new.csv`) are uploaded to HDFS under `/assignment_data/`.
+
+---
+
+#### **Files Overview**
+1. **`join_mrjob_v1.py`**: Performs an inner join of movie and rating datasets.
+2. **`conf_mrjob_v1.py`**: Sorts and joins movie and rating datasets.
+3. **`part_mrjob_v1.py`**: Implements partitioning using a custom key.
+4. **`test_cases.py`**: Contains unit tests for validating the MapReduce job.
+
+---
+
+### **Steps to Run MapReduce Jobs**
+
+#### **1. Running `join_mrjob_v1.py`**
+This job performs an inner join of movies and ratings based on `movie_id`.
+
+**Command:**
+```bash
+python3 join_mrjob_v1.py -r hadoop hdfs:///assignment_data/movie_new.csv hdfs:///assignment_data/rating_new.csv -o hdfs:///join_output/
+```
+
+#### **2. Running `conf_mrjob_v1.py`**
+This job sorts the dataset while joining movie and rating data.
+
+**Command:**
+```bash
+python3 conf_mrjob_v1.py -r hadoop hdfs:///assignment_data/movie_new.csv hdfs:///assignment_data/rating_new.csv -o hdfs:///sorted_output/
+```
+
+#### **3. Running `part_mrjob_v1.py`**
+This job partitions the output by a specific key (e.g., region).
+
+**Command:**
+```bash
+python3 part_mrjob_v1.py -r hadoop hdfs:///assignment_data/movie_new.csv hdfs:///assignment_data/rating_new.csv -o hdfs:///partitioned_output/
+```
+
+---
+
+### **Running Unit Tests**
+
+To validate the implementation of the join operation, execute the unit tests in `test_cases.py`.
+
+**Command:**
+```bash
+python3 -m unittest test_cases.py
+```
+
+---
+
+### **Output Verification**
+- Use the following command to verify output files on HDFS:
+  ```bash
+  hadoop fs -ls /<output_path>/
+  ```
+- To view specific results:
+  ```bash
+  hadoop fs -cat /<output_path>/part-00000
+  ```
+
+---
+
+### **Notes**
+1. Ensure that input files (`movie_new.csv` and `rating_new.csv`) are properly formatted and contain no header rows.
+2. Check Hadoop logs if jobs fail:
+   ```bash
+   yarn logs -applicationId <app_id>
+   ```
+3. Use the unit tests to debug any inconsistencies in the join logic.
+
+With these steps, you should be able to execute and validate all MapReduce jobs successfully.
