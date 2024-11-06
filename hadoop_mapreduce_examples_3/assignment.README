@@ -1,0 +1,18 @@
+Project Structure
+
+- configuration_files/  
+  Contains the Hadoop configuration files required for setting up the Capacity Scheduler and Fair Scheduler.
+
+- input_data/  
+  Includes sample.log and input datasets for the following jobs:
+    - WordCount
+    - Sort
+    - Grep
+
+- source_code/  
+  Contains mapper and reducer code implementations for five different jobs:
+    - Top K  
+    - Top K with Time Period
+    - WordCount
+    - Sort
+    - Grep

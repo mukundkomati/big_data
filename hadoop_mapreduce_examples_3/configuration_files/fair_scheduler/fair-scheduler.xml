@@ -1,0 +1,7 @@
+<allocations>
+	<!-- Define the default queue -->
+	<queue name="default">
+		<weight>1.0</weight>
+		<schedulingPolicy>fair</schedulingPolicy>
+	</queue>
+</allocations>

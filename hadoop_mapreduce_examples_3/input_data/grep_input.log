@@ -1,0 +1,5 @@
+Hadoop is a framework for distributed storage and processing.
+MapReduce is a programming model for processing large data sets.
+Hadoop Streaming allows us to use any programming language for mapper and reducer.
+Python is commonly used with Hadoop for data processing.
+Hadoop can handle large amounts of data efficiently.
